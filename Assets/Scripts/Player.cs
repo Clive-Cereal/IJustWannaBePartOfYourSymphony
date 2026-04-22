@@ -30,6 +30,8 @@ public class Player : MonoBehaviour
     private float _footstepTimer;
     private const float FootstepInterval = 0.4f;
 
+    private static int point = 0;
+
     void Awake()
     {
         _cc = GetComponent<CharacterController>();
@@ -151,6 +153,11 @@ public class Player : MonoBehaviour
             FMODUnity.RuntimeManager.PlayOneShot(deathSfx, transform.position);
 
         if (GameManager.Instance != null) GameManager.Instance.HandlePlayerDeath();
+    }
+
+    public void OnHitCoins()
+    {
+        point ++;
     }
 
     public void ResetPlayer(Vector3 spawnPosition)

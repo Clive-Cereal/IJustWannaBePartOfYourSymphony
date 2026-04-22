@@ -44,4 +44,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 538b1a73435663e4685c50071eea1296, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initialiseOnStart: 1
+  initialiseOnStart: 0
+  playerSpawnPoint: {fileID: 0}
+  onRunStarted:
+    m_PersistentCalls:
+      m_Calls: []
+  onRunEnded:
+    m_PersistentCalls:
+      m_Calls: []
+  onRunRestarted:
+    m_PersistentCalls:
+      m_Calls: []
+  onBeatJump:
+    m_PersistentCalls:
+      m_Calls: []

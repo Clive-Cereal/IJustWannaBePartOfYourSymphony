@@ -526,8 +526,8 @@ MonoBehaviour:
   switchSettingsMigration: 1
   HasSourceProject: 1
   HasPlatforms: 1
-  sourceProjectPath: FmodProjects/sampleFMproj/sampleFMproj.fspro
-  sourceBankPath: FmodProjects/sampleFMproj/Build
+  sourceProjectPath: FmodProjects/GAD_FMod/GAD_FMod.fspro
+  sourceBankPath: FmodProjects/GAD_FMod/Build
   sourceBankPathUnformatted: 
   BankRefreshCooldown: 5
   ShowBankRefreshWindow: 1
@@ -549,7 +549,8 @@ MonoBehaviour:
   VirtualChannelSettings: []
   RealChannelSettings: []
   Plugins: []
-  MasterBanks: []
+  MasterBanks:
+  - Master
   Banks: []
   BanksToLoad: []
   LiveUpdatePort: 9264
