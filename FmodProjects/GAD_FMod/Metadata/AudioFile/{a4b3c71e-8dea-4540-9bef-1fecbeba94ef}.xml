@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{a4b3c71e-8dea-4540-9bef-1fecbeba94ef}">
+		<property name="assetPath">
+			<value>SFX/Footstep/273718-Soft-Snow-Footstep-8.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>0.36013605442176871</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{1cabcf8f-7780-460a-a0d5-638870045fff}</destination>
+		</relationship>
+	</object>
+</objects>

@@ -179,6 +179,18 @@ PrefabInstance:
       propertyPath: 'roomPrefabs.Array.data[0]'
       value: 
       objectReference: {fileID: 2782357959264580127, guid: b1e0f5d5758c702459cc1c86aeae48ce, type: 3}
+    - target: {fileID: 3690785028697605321, guid: 20a7cb80be5fa674cab15f037b74e90b, type: 3}
+      propertyPath: 'roomPrefabs.Array.data[1]'
+      value: 
+      objectReference: {fileID: 2782357959264580127, guid: b1e0f5d5758c702459cc1c86aeae48ce, type: 3}
+    - target: {fileID: 3690785028697605321, guid: 20a7cb80be5fa674cab15f037b74e90b, type: 3}
+      propertyPath: 'roomPrefabs.Array.data[2]'
+      value: 
+      objectReference: {fileID: 2782357959264580127, guid: b1e0f5d5758c702459cc1c86aeae48ce, type: 3}
+    - target: {fileID: 3690785028697605321, guid: 20a7cb80be5fa674cab15f037b74e90b, type: 3}
+      propertyPath: 'roomPrefabs.Array.data[3]'
+      value: 
+      objectReference: {fileID: 2782357959264580127, guid: b1e0f5d5758c702459cc1c86aeae48ce, type: 3}
     - target: {fileID: 6098851000813364624, guid: 20a7cb80be5fa674cab15f037b74e90b, type: 3}
       propertyPath: m_Name
       value: GameManager

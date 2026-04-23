@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="EncodableAsset" id="{ca747c93-cdd1-4293-bfd7-cd23e2b4a105}">
+		<property name="assetPath">
+			<value>SFX/CoinCollide/</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{1cabcf8f-7780-460a-a0d5-638870045fff}</destination>
+		</relationship>
+	</object>
+</objects>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.03.00">
+	<object class="AudioFile" id="{e68ad2b1-e8ea-4599-aac1-fa2db8fd50cc}">
+		<property name="assetPath">
+			<value>SFX/CoinCollide/503463-WATRBubl-Air_Bubble_Release_Big_Glass_Bottle_Fills_with_Water_Underwater_in_Bathtub-ASD-Xforce-x05.wav</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>96</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>13.712864583333333</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{1cabcf8f-7780-460a-a0d5-638870045fff}</destination>
+		</relationship>
+	</object>
+</objects>
