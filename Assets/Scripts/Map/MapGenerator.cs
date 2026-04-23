@@ -7,15 +7,13 @@ public class MapGenerator : MonoBehaviour
 
     [Header("Rooms")]
     [SerializeField] private List<GameObject> roomPrefabs;
-    [SerializeField] private int minRooms = 5;
-    [SerializeField] private int maxRooms = 10;
-
-    [Header("Start")]
     [SerializeField] private GameObject startRoomPrefab;
-    [SerializeField] private Transform spawnPoint;
+    [SerializeField] private int lookAhead = 3;
 
-    private readonly List<Room> _spawnedRooms = new();
-    private int _currentRoomIndex = -1;
+    [Header("Spawn")]
+    [SerializeField] private Vector3 spawnPoint = Vector3.zero;
+
+    private Room _frontRoom;
 
     void Awake()
     {
@@ -29,21 +27,27 @@ public class MapGenerator : MonoBehaviour
 
     public void Generate()
     {
-        ClearRooms();
-        _currentRoomIndex = -1;
+        // Destroy all currently spawned rooms (children of this transform)
+        for (int i = transform.childCount - 1; i >= 0; i--)
+            Destroy(transform.GetChild(i).gameObject);
 
-        Vector3 nextPosition = spawnPoint != null ? spawnPoint.position : Vector3.zero;
-        Quaternion nextRotation = Quaternion.identity;
+        _frontRoom = null;
 
+        Vector3 startPos = spawnPoint;
         GameObject startPrefab = startRoomPrefab != null ? startRoomPrefab : PickRandom();
-        Room current = PlaceRoom(startPrefab, nextPosition, nextRotation);
+        _frontRoom = PlaceRoom(startPrefab, startPos, Quaternion.identity);
 
-        int count = Random.Range(minRooms, maxRooms + 1) - 1;
-        for (int i = 0; i < count; i++)
-        {
-            (nextPosition, nextRotation) = AlignToExit(current);
-            current = PlaceRoom(PickRandom(), nextPosition, nextRotation);
-        }
+        for (int i = 0; i < lookAhead; i++)
+            SpawnNext();
+    }
+
+    void SpawnNext()
+    {
+        if (_frontRoom == null) return;
+
+        Vector3 pos = _frontRoom.ExitPosition;
+        Quaternion rot = Quaternion.LookRotation(_frontRoom.ExitForward);
+        _frontRoom = PlaceRoom(PickRandom(), pos, rot);
     }
 
     Room PlaceRoom(GameObject prefab, Vector3 position, Quaternion rotation)
@@ -55,45 +59,19 @@ public class MapGenerator : MonoBehaviour
 
         if (room != null)
         {
-            Vector3 entryLocalOffset = go.transform.InverseTransformPoint(room.EntryPosition);
-            go.transform.position -= go.transform.TransformVector(entryLocalOffset);
+            // Align the room's entry point to the requested position
+            Vector3 entryOffset = go.transform.InverseTransformPoint(room.EntryPosition);
+            go.transform.position -= go.transform.TransformVector(entryOffset);
 
-            int index = _spawnedRooms.Count;
-            room.PlayerEntered += () => OnPlayerEnteredRoom(index);
-            _spawnedRooms.Add(room);
+            room.PlayerEntered += SpawnNext;
         }
 
         return room;
-    }
-
-    void OnPlayerEnteredRoom(int index)
-    {
-        // Collapse the previous room immediately
-        if (_currentRoomIndex >= 0 && _currentRoomIndex < _spawnedRooms.Count)
-        {
-            Room previous = _spawnedRooms[_currentRoomIndex];
-            if (previous != null) previous.CollapseImmediate();
-        }
-
-        _currentRoomIndex = index;
-    }
-
-    (Vector3 position, Quaternion rotation) AlignToExit(Room room)
-    {
-        if (room == null) return (Vector3.zero, Quaternion.identity);
-        return (room.ExitPosition, Quaternion.LookRotation(room.ExitForward));
     }
 
     GameObject PickRandom()
     {
         if (roomPrefabs == null || roomPrefabs.Count == 0) return null;
         return roomPrefabs[Random.Range(0, roomPrefabs.Count)];
-    }
-
-    public void ClearRooms()
-    {
-        foreach (Room r in _spawnedRooms)
-            if (r != null) Destroy(r.gameObject);
-        _spawnedRooms.Clear();
     }
 }

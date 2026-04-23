@@ -6,10 +6,12 @@ public class Player : MonoBehaviour
 {
     [Header("Movement")]
     [SerializeField] private float moveSpeed = 8f;
-    [SerializeField] private float moveSmoothing = 12f;
-    [SerializeField] private float rotationSpeed = 60f;
+    [SerializeField] private float laneWidth = 2f;
+    [SerializeField] private float laneSnapSpeed = 12f;
     [SerializeField] private float jumpForce = 12f;
     [SerializeField] private float gravity = -25f;
+    [SerializeField] private int maxJumps = 2;
+    [SerializeField] private int laneCount = 3;
 
     [Header("FMOD SFX")]
     [SerializeField] private FMODUnity.EventReference collectSfx;
@@ -24,13 +26,23 @@ public class Player : MonoBehaviour
     private Animator _anim;
     private InputAction _moveAction;
     private InputAction _jumpAction;
+
+    // Lane state
+    private int _laneIndex;             // which lane we're targeting
+    private float _lateralOffset;       // current interpolated offset from center
+    private float _targetLateralOffset; // target offset for the current lane
+    private Vector3 _right;             // right direction captured at start, never changes
+
+    // Jump state
     private float _verticalVelocity;
-    private float _currentForwardVel;
+    private int _jumpsRemaining;
     private bool _jumpBuffered;
+
     private float _footstepTimer;
     private const float FootstepInterval = 0.4f;
 
     private static int point = 0;
+    public static int Point => point;
 
     void Awake()
     {
@@ -49,17 +61,26 @@ public class Player : MonoBehaviour
     {
         if (_jumpAction != null)
             _jumpAction.performed += OnJumpPressed;
+        if (_moveAction != null)
+            _moveAction.performed += OnMovePerformed;
     }
 
     void OnDisable()
     {
         if (_jumpAction != null)
             _jumpAction.performed -= OnJumpPressed;
+        if (_moveAction != null)
+            _moveAction.performed -= OnMovePerformed;
     }
 
     void Start()
     {
         IsAlive = true;
+        _right = transform.right;
+        _laneIndex = laneCount / 2;
+        _lateralOffset = 0f;
+        _targetLateralOffset = 0f;
+        _jumpsRemaining = maxJumps;
     }
 
     void Update()
@@ -67,37 +88,47 @@ public class Player : MonoBehaviour
         if (!IsAlive || GameManager.currentGameState != GameState.Playing)
             return;
 
-        HandleMove();
+        HandleLane();
         HandleGravityAndJump();
         ApplyMovement();
         HandleFootsteps();
     }
 
-    void HandleMove()
+    void HandleLane()
     {
-        Vector2 input = _moveAction != null ? _moveAction.ReadValue<Vector2>() : Vector2.zero;
-
-        // Move relative to player facing so camera-parented-under-player works naturally
-        // A/D rotates the player (camera turns with it), W/S moves forward/back
-        transform.Rotate(Vector3.up, input.x * rotationSpeed * Time.deltaTime);
-
-        _currentForwardVel = Mathf.Lerp(_currentForwardVel, input.y * moveSpeed, moveSmoothing * Time.deltaTime);
-
         if (_anim != null)
+            _anim.SetBool("isMoving", true);
+    }
+
+    void OnMovePerformed(InputAction.CallbackContext ctx)
+    {
+        if (!IsAlive || GameManager.currentGameState != GameState.Playing) return;
+
+        float x = ctx.ReadValue<Vector2>().x;
+        if (x < -0.5f && _laneIndex > 0)
         {
-            _anim.SetBool("isMoving", _currentForwardVel > 0.1f);
-            _anim.SetBool("isMovingBackward", input.y < -0.01f);
+            _laneIndex--;
+            _targetLateralOffset = (_laneIndex - laneCount / 2) * laneWidth;
+        }
+        else if (x > 0.5f && _laneIndex < laneCount - 1)
+        {
+            _laneIndex++;
+            _targetLateralOffset = (_laneIndex - laneCount / 2) * laneWidth;
         }
     }
 
     void HandleGravityAndJump()
     {
         if (_cc.isGrounded && _verticalVelocity < 0f)
+        {
             _verticalVelocity = -2f;
+            _jumpsRemaining = maxJumps;
+        }
 
-        if (_jumpBuffered && _cc.isGrounded)
+        if (_jumpBuffered && _jumpsRemaining > 0)
         {
             _verticalVelocity = jumpForce;
+            _jumpsRemaining--;
             _jumpBuffered = false;
             if (_anim != null) _anim.SetTrigger("isJumping");
             if (!jumpSfx.IsNull)
@@ -108,20 +139,24 @@ public class Player : MonoBehaviour
         }
 
         _verticalVelocity += gravity * Time.deltaTime;
-
     }
 
     void ApplyMovement()
     {
-        Vector3 motion = (transform.forward * _currentForwardVel + Vector3.up * _verticalVelocity) * Time.deltaTime;
+        // Lerp lateral offset and apply only the delta this frame so CC collision still works
+        float prevLateral = _lateralOffset;
+        _lateralOffset = Mathf.Lerp(_lateralOffset, _targetLateralOffset, laneSnapSpeed * Time.deltaTime);
+
+        Vector3 motion = transform.forward * (moveSpeed * Time.deltaTime)
+                       + _right * (_lateralOffset - prevLateral)
+                       + Vector3.up * (_verticalVelocity * Time.deltaTime);
         _cc.Move(motion);
-        DistanceTravelled += Mathf.Abs(_currentForwardVel) * Time.deltaTime;
+        DistanceTravelled += moveSpeed * Time.deltaTime;
     }
 
     void HandleFootsteps()
     {
         if (!_cc.isGrounded || footstepSfx.IsNull) return;
-        if (Mathf.Abs(_currentForwardVel) < 0.1f) return;
 
         _footstepTimer -= Time.deltaTime;
         if (_footstepTimer <= 0f)
@@ -141,7 +176,8 @@ public class Player : MonoBehaviour
     {
         if (!collectSfx.IsNull)
             FMODUnity.RuntimeManager.PlayOneShot(collectSfx, transform.position);
-        AudioLayerSystem.Instance?.ActivateLayer(layerId);
+        if (AudioLayerSystem.Instance != null)
+            AudioLayerSystem.Instance.ActivateLayer(layerId);
     }
 
     public void OnHitObstacle()
@@ -157,7 +193,7 @@ public class Player : MonoBehaviour
 
     public void OnHitCoins()
     {
-        point ++;
+        point++;
     }
 
     public void ResetPlayer(Vector3 spawnPosition)
@@ -169,7 +205,10 @@ public class Player : MonoBehaviour
         IsAlive = true;
         DistanceTravelled = 0f;
         _verticalVelocity = 0f;
-        _currentForwardVel = 0f;
+        _laneIndex = laneCount / 2;
+        _lateralOffset = 0f;
+        _targetLateralOffset = 0f;
+        _jumpsRemaining = maxJumps;
         _jumpBuffered = false;
     }
 }

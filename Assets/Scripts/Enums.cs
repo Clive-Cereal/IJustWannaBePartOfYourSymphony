@@ -10,6 +10,8 @@ public enum GameState
     Init,
     Loading,
     Menu,
+    Countdown,
     Playing,
-    Paused
+    Paused,
+    GameOver
 }
