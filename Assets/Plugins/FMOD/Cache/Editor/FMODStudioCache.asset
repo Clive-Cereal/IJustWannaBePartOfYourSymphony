@@ -47,6 +47,26 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1016
+--- !u!114 &-2903152194381470032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/Background.bank
+  m_EditorClassIdentifier: 
+  Path: FmodProjects/GAD_FMod/Build/Desktop/Background.bank
+  Name: Background
+  StudioPath: bank:/Background
+  lastModified: 639125873032552332
+  FileSizes:
+  - Name: Desktop
+    Value: 12948832
+  Exists: 1
 --- !u!114 &-2840161853446113110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,7 +82,7 @@ MonoBehaviour:
   Path: FmodProjects/GAD_FMod/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639125854615465683
+  lastModified: 639125872966947168
   FileSizes:
   - Name: Desktop
     Value: 1122
@@ -82,7 +102,7 @@ MonoBehaviour:
   Path: FmodProjects/GAD_FMod/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639125854610772469
+  lastModified: 639125872966925108
   FileSizes:
   - Name: Desktop
     Value: 1074
@@ -130,18 +150,20 @@ MonoBehaviour:
   - {fileID: -2840161853446113110}
   - {fileID: -2813845166732075635}
   - {fileID: -4277138525462882649}
+  - {fileID: -2903152194381470032}
   EditorEvents:
   - {fileID: -3824407623914340283}
   - {fileID: 7424073999929690820}
   - {fileID: -2635590251165675974}
   - {fileID: 2945454820544088781}
+  - {fileID: 1837254508523748191}
   EditorParameters: []
   MasterBanks:
   - {fileID: -2813845166732075635}
   StringsBanks:
   - {fileID: -2840161853446113110}
   cacheVersion: 131859
-  cacheTime: 639125854620319334
+  cacheTime: 639125873032552332
   SerializableEventsDict:
   - key: event:/SFX_Jump
     index: 0
@@ -151,6 +173,35 @@ MonoBehaviour:
     index: 2
   - key: event:/SFX_CoinCollide
     index: 3
+  - key: event:/BG_SpatialSound_1
+    index: 4
+--- !u!114 &1837254508523748191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/BG_SpatialSound_1
+  m_EditorClassIdentifier: 
+  Path: event:/BG_SpatialSound_1
+  Guid:
+    Data1: -1963408177
+    Data2: 1215621769
+    Data3: 172039846
+    Data4: -188161752
+  Banks:
+  - {fileID: -2903152194381470032}
+  IsStream: 1
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 200778
 --- !u!114 &2945454820544088781
 MonoBehaviour:
   m_ObjectHideFlags: 0
