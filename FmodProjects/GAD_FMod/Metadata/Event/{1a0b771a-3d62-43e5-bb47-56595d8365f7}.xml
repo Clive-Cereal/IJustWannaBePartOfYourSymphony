@@ -64,6 +64,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{c0eec84f-3ef4-453b-a21b-17b7c505bd86}">
+		<property name="volume">
+			<value>-7.5</value>
+		</property>
 		<relationship name="effectChain">
 			<destination>{2174910e-c04c-4635-bf13-dcb228d31be1}</destination>
 		</relationship>
@@ -76,7 +79,7 @@
 	</object>
 	<object class="SingleSound" id="{bbc9d8a9-41b8-47fb-9a24-1d6848ced908}">
 		<property name="length">
-			<value>0.60371882086167805</value>
+			<value>0.5390625</value>
 		</property>
 		<relationship name="audioFile">
 			<destination>{bc49f8bd-d3d3-4140-9ed6-3741913449c7}</destination>
@@ -91,9 +94,62 @@
 	<object class="MixerBusEffectChain" id="{2174910e-c04c-4635-bf13-dcb228d31be1}">
 		<relationship name="effects">
 			<destination>{0efbf507-ab58-4591-ad3f-f5c5767406c4}</destination>
+			<destination>{c9c15b4a-c386-469b-b769-9a978cafce98}</destination>
+			<destination>{c74f872e-21e7-46a0-9b2b-bdd3727c3169}</destination>
+			<destination>{4f776e3e-48e1-4001-928f-ee580f356f1e}</destination>
 		</relationship>
 	</object>
-	<object class="MixerBusPanner" id="{f95972ff-15bc-4646-afda-558439b6e196}" />
+	<object class="MixerBusPanner" id="{f95972ff-15bc-4646-afda-558439b6e196}">
+		<property name="surroundPanExtent">
+			<value>100</value>
+		</property>
+		<relationship name="modulators">
+			<destination>{0533f483-cafe-4674-b301-5ae3357fa86a}</destination>
+		</relationship>
+	</object>
 	<object class="MixerBusFader" id="{45003efb-b962-4dfa-ad56-99dc1e714780}" />
 	<object class="MixerBusFader" id="{0efbf507-ab58-4591-ad3f-f5c5767406c4}" />
+	<object class="ThreeEQEffect" id="{c9c15b4a-c386-469b-b769-9a978cafce98}">
+		<property name="lowGain">
+			<value>-4</value>
+		</property>
+		<property name="midGain">
+			<value>-3</value>
+		</property>
+		<property name="highGain">
+			<value>-2</value>
+		</property>
+	</object>
+	<object class="SFXReverbEffect" id="{c74f872e-21e7-46a0-9b2b-bdd3727c3169}">
+		<property name="decayTime">
+			<value>650</value>
+		</property>
+		<property name="dryLevel">
+			<value>4.5</value>
+		</property>
+	</object>
+	<object class="PitchShifterEffect" id="{4f776e3e-48e1-4001-928f-ee580f356f1e}">
+		<property name="pitch">
+			<value>0.899999976</value>
+		</property>
+		<relationship name="modulators">
+			<destination>{f6eb07f8-3606-40c9-a5e1-e51af2aa0e8e}</destination>
+		</relationship>
+	</object>
+	<object class="RandomizerModulator" id="{0533f483-cafe-4674-b301-5ae3357fa86a}">
+		<property name="nameOfPropertyBeingModulated">
+			<value>surroundPanDirection</value>
+		</property>
+		<property name="amount">
+			<value>42.5</value>
+		</property>
+	</object>
+	<object class="RandomizerModulator" id="{f6eb07f8-3606-40c9-a5e1-e51af2aa0e8e}">
+		<property name="nameOfPropertyBeingModulated">
+			<value>pitch</value>
+		</property>
+		<property name="amount">
+			<value>13.5</value>
+		</property>
+	</object>
 </objects>

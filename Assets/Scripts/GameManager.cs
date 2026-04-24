@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour, ISaveable
     public UnityEvent onRunStarted;
     public UnityEvent onRunEnded;
     public UnityEvent onRunRestarted;
+    public UnityEvent onRunVictory;
     public UnityEvent onBeatJump;
 
     public static GameState currentState = GameState.Init;
@@ -41,6 +42,26 @@ public class GameManager : MonoBehaviour, ISaveable
         if (!initialiseOnStart) currentState = GameState.Playing;
     }
 
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if (scene.name == "02_Main")
+        {
+            currentState = GameState.Playing;
+            _player = FindFirstObjectByType<Player>();
+            StartRun();
+        }
+    }
+
     void Start()
     {
         _player = FindFirstObjectByType<Player>();
@@ -63,7 +84,10 @@ public class GameManager : MonoBehaviour, ISaveable
     void Initialise()
     {
         if (currentState == GameState.Init)
+        {
+            currentState = GameState.Loading;
             SceneLoader("01_Menu", GameState.Menu);
+        }
     }
 
     // ── Run lifecycle ──────────────────────────────────────────────
@@ -93,10 +117,21 @@ public class GameManager : MonoBehaviour, ISaveable
         onRunStarted.Invoke();
     }
 
+    public void HandleVictory()
+    {
+        if (!RunActive) return;
+        RunActive = false;
+        currentState = GameState.Victory;
+        if (Score > BestScore) BestScore = Score;
+        onRunVictory.Invoke();
+        if (AudioLayerSystem.Instance != null) AudioLayerSystem.Instance.ResetLayers();
+    }
+
     public void HandlePlayerDeath()
     {
         if (!RunActive) return;
         RunActive = false;
+        currentState = GameState.GameOver;
 
         if (CurrentDistance > BestDistance) BestDistance = CurrentDistance;
         if (Score > BestScore) BestScore = Score;
