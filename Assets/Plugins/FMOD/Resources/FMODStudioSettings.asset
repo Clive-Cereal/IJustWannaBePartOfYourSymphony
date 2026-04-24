@@ -552,8 +552,9 @@ MonoBehaviour:
   MasterBanks:
   - Master
   Banks:
-  - Background
+  - BGM
   - Player
+  - UI
   BanksToLoad: []
   LiveUpdatePort: 9264
   EnableMemoryTracking: 0
@@ -567,7 +568,7 @@ MonoBehaviour:
   SharedLibraryTimeSinceStart: 0
   CurrentVersion: 131859
   HideSetupWizard: 1
-  LastEventReferenceScanVersion: 131858
+  LastEventReferenceScanVersion: 131859
   Platforms:
   - {fileID: -7596530294830845420}
   - {fileID: -7319043241521413650}
