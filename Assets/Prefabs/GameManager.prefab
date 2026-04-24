@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 603715611113636594}
   - component: {fileID: 2188809340926306438}
   - component: {fileID: 3690785028697605321}
+  - component: {fileID: 3455152807335466598}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -67,6 +68,9 @@ MonoBehaviour:
   onRunRestarted:
     m_PersistentCalls:
       m_Calls: []
+  onRunVictory:
+    m_PersistentCalls:
+      m_Calls: []
   onBeatJump:
     m_PersistentCalls:
       m_Calls: []
@@ -83,7 +87,33 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomPrefabs:
-  - {fileID: 2782357959264580127, guid: b1e0f5d5758c702459cc1c86aeae48ce, type: 3}
+  - {fileID: 4355397045128628626, guid: b0e61092c80962a44ab29bd8f58c7808, type: 3}
+  - {fileID: 8575538398994225820, guid: f5b60a167991ecd4fa96fac117868fce, type: 3}
+  - {fileID: 5133533382235352977, guid: e09f92bc6f489fc42a002256a0bc7615, type: 3}
+  - {fileID: 6482587463733113940, guid: 869f548e6e8a9d44a8797b105600979a, type: 3}
+  - {fileID: 2492352762437087303, guid: 560648085af2d8f44a917aaed451ae37, type: 3}
   startRoomPrefab: {fileID: 2271368885234911778, guid: f1dcfd4734ca7c24e8fe1647315b07e2, type: 3}
   lookAhead: 3
   spawnPoint: {x: 0, y: 0, z: 0}
+--- !u!114 &3455152807335466598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6098851000813364624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b951f47bebe7b6842a244c139bd8d2be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  musicEvent:
+    Guid:
+      Data1: -1963408177
+      Data2: 1215621769
+      Data3: 172039846
+      Data4: -188161752
+    Path: event:/BGM_SpatialSound
+  bpm: 147
+  hitWindowSeconds: 0.15
+  beatIndicator: {fileID: 0}

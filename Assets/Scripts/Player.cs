@@ -4,6 +4,9 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(CharacterController))]
 public class Player : MonoBehaviour
 {
+    [Header("Debug")]
+    public bool godMode = false;
+
     [Header("Movement")]
     [SerializeField] private float moveSpeed = 8f;
     [SerializeField] private float laneWidth = 2f;
@@ -15,12 +18,14 @@ public class Player : MonoBehaviour
 
     [Header("FMOD SFX")]
     [SerializeField] private FMODUnity.EventReference collectSfx;
-    [SerializeField] private FMODUnity.EventReference deathSfx;
+    [SerializeField] private FMODUnity.EventReference hitSfx;
     [SerializeField] private FMODUnity.EventReference jumpSfx;
-    [SerializeField] private FMODUnity.EventReference footstepSfx;
+    [SerializeField] private FMODUnity.EventReference strafeSfx;
+
 
     public bool IsAlive { get; private set; } = true;
     public float DistanceTravelled { get; private set; }
+    public static int ObstacleHits { get; private set; }
 
     private CharacterController _cc;
     private Animator _anim;
@@ -28,20 +33,19 @@ public class Player : MonoBehaviour
     private InputAction _jumpAction;
 
     // Lane state
-    private int _laneIndex;             // which lane we're targeting
-    private float _lateralOffset;       // current interpolated offset from center
-    private float _targetLateralOffset; // target offset for the current lane
-    private Vector3 _right;             // right direction captured at start, never changes
+    private int _laneIndex;             
+    private float _lateralOffset;
+    private float _targetLateralOffset; 
+    private Vector3 _right;          
 
     // Jump state
     private float _verticalVelocity;
     private int _jumpsRemaining;
     private bool _jumpBuffered;
 
-    private float _footstepTimer;
-    private const float FootstepInterval = 0.4f;
+    private float _lastHitTime = -10f;
 
-    private static int point = 0;
+private static int point = 0;
     public static int Point => point;
 
     void Awake()
@@ -81,6 +85,7 @@ public class Player : MonoBehaviour
         _lateralOffset = 0f;
         _targetLateralOffset = 0f;
         _jumpsRemaining = maxJumps;
+
     }
 
     void Update()
@@ -91,7 +96,6 @@ public class Player : MonoBehaviour
         HandleLane();
         HandleGravityAndJump();
         ApplyMovement();
-        HandleFootsteps();
     }
 
     void HandleLane()
@@ -105,15 +109,25 @@ public class Player : MonoBehaviour
         if (!IsAlive || GameManager.currentGameState != GameState.Playing) return;
 
         float x = ctx.ReadValue<Vector2>().x;
+        bool laneChanged = false;
         if (x < -0.5f && _laneIndex > 0)
         {
             _laneIndex--;
             _targetLateralOffset = (_laneIndex - laneCount / 2) * laneWidth;
+            laneChanged = true;
         }
         else if (x > 0.5f && _laneIndex < laneCount - 1)
         {
             _laneIndex++;
             _targetLateralOffset = (_laneIndex - laneCount / 2) * laneWidth;
+            laneChanged = true;
+        }
+        if (laneChanged)
+        {
+            if (!strafeSfx.IsNull)
+                FMODUnity.RuntimeManager.PlayOneShot(strafeSfx, transform.position);
+            if (BeatManager.Instance != null && BeatManager.Instance.IsOnBeat())
+                point++;
         }
     }
 
@@ -135,7 +149,10 @@ public class Player : MonoBehaviour
                 FMODUnity.RuntimeManager.PlayOneShot(jumpSfx, transform.position);
 
             if (BeatManager.Instance != null && BeatManager.Instance.IsOnBeat())
+            {
+                point++;
                 if (GameManager.Instance != null) GameManager.Instance.AddBeatBonus();
+            }
         }
 
         _verticalVelocity += gravity * Time.deltaTime;
@@ -154,46 +171,34 @@ public class Player : MonoBehaviour
         DistanceTravelled += moveSpeed * Time.deltaTime;
     }
 
-    void HandleFootsteps()
-    {
-        if (!_cc.isGrounded || footstepSfx.IsNull) return;
-
-        _footstepTimer -= Time.deltaTime;
-        if (_footstepTimer <= 0f)
-        {
-            _footstepTimer = FootstepInterval;
-            FMODUnity.RuntimeManager.PlayOneShot(footstepSfx, transform.position);
-        }
-    }
-
     void OnJumpPressed(InputAction.CallbackContext ctx)
     {
         if (!IsAlive || GameManager.currentGameState != GameState.Playing) return;
         _jumpBuffered = true;
     }
-
-    public void OnOrbCollected(int layerId)
-    {
-        if (!collectSfx.IsNull)
-            FMODUnity.RuntimeManager.PlayOneShot(collectSfx, transform.position);
-        if (AudioLayerSystem.Instance != null)
-            AudioLayerSystem.Instance.ActivateLayer(layerId);
-    }
-
     public void OnHitObstacle()
     {
-        if (!IsAlive) return;
-        IsAlive = false;
+        if (!IsAlive || godMode) return;
+        if (Time.time - _lastHitTime < 2f) return;
+        _lastHitTime = Time.time;
 
-        if (!deathSfx.IsNull)
-            FMODUnity.RuntimeManager.PlayOneShot(deathSfx, transform.position);
+        point = Mathf.Max(0, point - 5);
+        ObstacleHits++;
 
-        if (GameManager.Instance != null) GameManager.Instance.HandlePlayerDeath();
+        if (ObstacleHits >= 10)
+        {
+            IsAlive = false;
+            if (!hitSfx.IsNull)
+                FMODUnity.RuntimeManager.PlayOneShot(hitSfx, transform.position);
+            if (GameManager.Instance != null) GameManager.Instance.HandlePlayerDeath();
+        }
     }
 
     public void OnHitCoins()
     {
-        point++;
+        if (!collectSfx.IsNull)
+            FMODUnity.RuntimeManager.PlayOneShot(collectSfx, transform.position);
+        point += 10 + (point / 10);
     }
 
     public void ResetPlayer(Vector3 spawnPosition)
@@ -210,5 +215,7 @@ public class Player : MonoBehaviour
         _targetLateralOffset = 0f;
         _jumpsRemaining = maxJumps;
         _jumpBuffered = false;
+        ObstacleHits = 0;
+        point = 0;
     }
 }

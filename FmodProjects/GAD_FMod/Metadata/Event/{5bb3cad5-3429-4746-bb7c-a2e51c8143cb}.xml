@@ -5,7 +5,7 @@
 			<value>SFX_CoinCollide</value>
 		</property>
 		<property name="outputFormat">
-			<value>1</value>
+			<value>2</value>
 		</property>
 		<relationship name="folder">
 			<destination>{a917cba0-117e-444a-a7a6-599a51c6ab84}</destination>
@@ -23,7 +23,7 @@
 			<destination>{096488c3-2eaf-485a-8272-062c76c00c31}</destination>
 		</relationship>
 		<relationship name="markerTracks">
-			<destination>{e2819c79-ed61-4b08-8cce-d6d8d43751d5}</destination>
+			<destination>{84bf29ad-2f13-4637-b672-8b2981bbf370}</destination>
 		</relationship>
 		<relationship name="timeline">
 			<destination>{9f5f81f4-bb64-4760-b28e-28a1c10e9b11}</destination>
@@ -57,7 +57,7 @@
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{096488c3-2eaf-485a-8272-062c76c00c31}" />
-	<object class="MarkerTrack" id="{e2819c79-ed61-4b08-8cce-d6d8d43751d5}" />
+	<object class="MarkerTrack" id="{84bf29ad-2f13-4637-b672-8b2981bbf370}" />
 	<object class="Timeline" id="{9f5f81f4-bb64-4760-b28e-28a1c10e9b11}">
 		<relationship name="modules">
 			<destination>{21bb5f0c-d7bb-4894-83cb-29a4822541d6}</destination>
@@ -97,9 +97,19 @@
 	<object class="MixerBusEffectChain" id="{920c0a65-630a-4397-a10a-e9e3cd42060e}">
 		<relationship name="effects">
 			<destination>{2b48e370-145e-4fee-823b-3dce26e42b12}</destination>
+			<destination>{3fc1198b-4519-4826-b17d-9644133fc8eb}</destination>
+			<destination>{0b0f6929-eccd-43d7-bde7-c3cc3fb1ed63}</destination>
+			<destination>{8e86639c-6a7a-42d5-9af7-9b16a6334534}</destination>
 		</relationship>
 	</object>
-	<object class="MixerBusPanner" id="{1397d4f9-ff98-4819-a2dc-99ad5b2c3b26}" />
+	<object class="MixerBusPanner" id="{1397d4f9-ff98-4819-a2dc-99ad5b2c3b26}">
+		<property name="surroundPanDirection">
+			<value>180</value>
+		</property>
+		<property name="surroundPanExtent">
+			<value>94</value>
+		</property>
+	</object>
 	<object class="SingleSound" id="{8bc8cc98-d717-4bb6-abcb-b8ba5b3c92e5}">
 		<relationship name="audioFile">
 			<destination>{5bb9202e-eee3-49ea-b82c-544ecd482e72}</destination>
@@ -137,4 +147,24 @@
 	</object>
 	<object class="MixerBusFader" id="{dcbc6656-cb44-41b8-b4ab-3e82fa119bdd}" />
 	<object class="MixerBusFader" id="{2b48e370-145e-4fee-823b-3dce26e42b12}" />
+	<object class="SFXReverbEffect" id="{3fc1198b-4519-4826-b17d-9644133fc8eb}">
+		<property name="decayTime">
+			<value>3000</value>
+		</property>
+		<property name="HFDecayRatio">
+			<value>70</value>
+		</property>
+	</object>
+	<object class="ThreeEQEffect" id="{0b0f6929-eccd-43d7-bde7-c3cc3fb1ed63}">
+		<property name="lowGain">
+			<value>-8.5</value>
+		</property>
+		<property name="midGain">
+			<value>1.5</value>
+		</property>
+		<property name="highGain">
+			<value>5</value>
+		</property>
+	</object>
+	<object class="SpatialiserEffect" id="{8e86639c-6a7a-42d5-9af7-9b16a6334534}" />
 </objects>

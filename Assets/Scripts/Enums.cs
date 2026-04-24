@@ -13,5 +13,6 @@ public enum GameState
     Countdown,
     Playing,
     Paused,
-    GameOver
+    GameOver,
+    Victory
 }

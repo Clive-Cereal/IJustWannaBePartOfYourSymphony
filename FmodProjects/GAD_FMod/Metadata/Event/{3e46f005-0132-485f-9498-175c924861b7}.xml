@@ -5,7 +5,7 @@
 			<value>SFX_Jump</value>
 		</property>
 		<property name="outputFormat">
-			<value>0</value>
+			<value>1</value>
 		</property>
 		<relationship name="folder">
 			<destination>{a917cba0-117e-444a-a7a6-599a51c6ab84}</destination>
@@ -39,7 +39,7 @@
 	</object>
 	<object class="MasterTrack" id="{4206892e-cdeb-4a29-bd5d-58a57b9fde32}">
 		<relationship name="modules">
-			<destination>{8de3ae2a-57ee-43fd-9d24-37235cbe14e3}</destination>
+			<destination>{f605b28a-37bf-4476-b629-fa3608cac427}</destination>
 		</relationship>
 		<relationship name="mixerGroup">
 			<destination>{68034f55-597f-4289-9f87-2b27b818c091}</destination>
@@ -60,7 +60,7 @@
 	<object class="MarkerTrack" id="{c33f3b7f-023e-4b02-9ac6-2bb6fa452f7d}" />
 	<object class="Timeline" id="{f1ceb2d8-ad50-471f-b296-3d98bb74f73b}">
 		<relationship name="modules">
-			<destination>{8de3ae2a-57ee-43fd-9d24-37235cbe14e3}</destination>
+			<destination>{f605b28a-37bf-4476-b629-fa3608cac427}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{68034f55-597f-4289-9f87-2b27b818c091}">
@@ -74,12 +74,15 @@
 			<destination>{b275039d-0103-4366-9014-39d4ca9652d3}</destination>
 		</relationship>
 	</object>
-	<object class="SingleSound" id="{8de3ae2a-57ee-43fd-9d24-37235cbe14e3}">
+	<object class="MultiSound" id="{f605b28a-37bf-4476-b629-fa3608cac427}">
 		<property name="length">
-			<value>1.016</value>
+			<value>0.30499999999999999</value>
 		</property>
-		<relationship name="audioFile">
-			<destination>{1e18662c-7284-4d21-af69-7b144234afde}</destination>
+		<property name="playlistMode">
+			<value>1</value>
+		</property>
+		<relationship name="sounds">
+			<destination>{afee2653-1fdc-4755-b303-d9e4b704f32e}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusEffectChain" id="{20d90397-a438-46ca-9351-3c15bcad5be8}">
@@ -91,9 +94,62 @@
 	<object class="MixerBusEffectChain" id="{32395df5-d543-4540-9ea5-06397bbe842b}">
 		<relationship name="effects">
 			<destination>{3730fb3a-8c0d-44a1-b43a-b84946b5ac83}</destination>
+			<destination>{b75004c9-e22c-42de-a531-11a4558b05e8}</destination>
+			<destination>{7d19590c-4df2-4ba3-9663-5154a2e1aba8}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{f07b7192-dabe-489e-89ff-f02bc4ae7b53}" />
+	<object class="SingleSound" id="{afee2653-1fdc-4755-b303-d9e4b704f32e}">
+		<property name="startOffset">
+			<value>7.5</value>
+		</property>
+		<relationship name="audioFile">
+			<destination>{e6ca927b-8d74-4cb9-bc5c-73d44da938a3}</destination>
+		</relationship>
+	</object>
 	<object class="MixerBusFader" id="{dc6eed28-9db4-47ea-8b2d-8c6d2180cc59}" />
 	<object class="MixerBusFader" id="{3730fb3a-8c0d-44a1-b43a-b84946b5ac83}" />
+	<object class="SFXReverbEffect" id="{b75004c9-e22c-42de-a531-11a4558b05e8}">
+		<property name="decayTime">
+			<value>3000</value>
+		</property>
+		<property name="HFDecayRatio">
+			<value>80</value>
+		</property>
+	</object>
+	<object class="MultibandEqEffect" id="{7d19590c-4df2-4ba3-9663-5154a2e1aba8}">
+		<property name="filterTypeA">
+			<value>0</value>
+		</property>
+		<property name="filterTypeB">
+			<value>14</value>
+		</property>
+		<property name="filterTypeD">
+			<value>1</value>
+		</property>
+		<property name="frequencyA">
+			<value>1869.11658</value>
+		</property>
+		<property name="frequencyB">
+			<value>277.844482</value>
+		</property>
+		<property name="frequencyD">
+			<value>7336.98682</value>
+		</property>
+		<property name="frequencyE">
+			<value>10220.8965</value>
+		</property>
+		<property name="qualityA">
+			<value>3.34482741</value>
+		</property>
+		<property name="qualityD">
+			<value>0.751586199</value>
+		</property>
+		<property name="qualityE">
+			<value>0.455827594</value>
+		</property>
+		<property name="gainE">
+			<value>8.79310417</value>
+		</property>
+	</object>
 </objects>
