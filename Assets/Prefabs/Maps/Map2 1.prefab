@@ -1573,6 +1573,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rock_3
       objectReference: {fileID: 0}
+    - target: {fileID: 3674795340391313645, guid: 132cf5cdcb13eb749859db022c5d31bf, type: 3}
+      propertyPath: m_Size.x
+      value: 1.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3674795340391313645, guid: 132cf5cdcb13eb749859db022c5d31bf, type: 3}
+      propertyPath: m_Size.y
+      value: 1.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3674795340391313645, guid: 132cf5cdcb13eb749859db022c5d31bf, type: 3}
+      propertyPath: m_Size.z
+      value: 1.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3674795340391313645, guid: 132cf5cdcb13eb749859db022c5d31bf, type: 3}
+      propertyPath: m_Center.y
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 7691017570365301173, guid: 132cf5cdcb13eb749859db022c5d31bf, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.28

@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 530423086720668341}
+  - component: {fileID: 2018324100831034879}
+  - component: {fileID: 7772948099385405728}
   m_Layer: 0
   m_Name: Pine_tree
   m_TagString: Untagged
@@ -32,6 +34,41 @@ Transform:
   - {fileID: 3704069281250635371}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &2018324100831034879
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4936530724998089411}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Height: 6
+  m_Direction: 1
+  m_Center: {x: 0, y: 2.5, z: 0}
+--- !u!114 &7772948099385405728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4936530724998089411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53b9dd2aa114a334c88f74d91ac1aa39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3704069281251030251
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -85,7 +122,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: a0bd7523e1445f147886c60f88830141, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: cd07d8a28e2acb9468ecb30a6f45820b, type: 2}
     m_RemovedComponents: []

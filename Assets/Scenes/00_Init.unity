@@ -171,6 +171,26 @@ PrefabInstance:
       propertyPath: initialiseOnStart
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3690785028697605321, guid: 20a7cb80be5fa674cab15f037b74e90b, type: 3}
+      propertyPath: 'roomPrefabs.Array.data[0]'
+      value: 
+      objectReference: {fileID: 4355397045128628626, guid: 9f60aceae32f2d44a8de65d5026ea228, type: 3}
+    - target: {fileID: 3690785028697605321, guid: 20a7cb80be5fa674cab15f037b74e90b, type: 3}
+      propertyPath: 'roomPrefabs.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8575538398994225820, guid: 7bfad9d104ff6a84aaca924d7594fd2a, type: 3}
+    - target: {fileID: 3690785028697605321, guid: 20a7cb80be5fa674cab15f037b74e90b, type: 3}
+      propertyPath: 'roomPrefabs.Array.data[2]'
+      value: 
+      objectReference: {fileID: 5133533382235352977, guid: 6ab0e821c3432464a8fe5ac96c89c65b, type: 3}
+    - target: {fileID: 3690785028697605321, guid: 20a7cb80be5fa674cab15f037b74e90b, type: 3}
+      propertyPath: 'roomPrefabs.Array.data[3]'
+      value: 
+      objectReference: {fileID: 6482587463733113940, guid: 40aa1ab8d5ba44d49a483ce1ea4ba985, type: 3}
+    - target: {fileID: 3690785028697605321, guid: 20a7cb80be5fa674cab15f037b74e90b, type: 3}
+      propertyPath: 'roomPrefabs.Array.data[4]'
+      value: 
+      objectReference: {fileID: 2492352762437087303, guid: 515c24ec5e175c8409ace1a8e9d09f24, type: 3}
     - target: {fileID: 6098851000813364624, guid: 20a7cb80be5fa674cab15f037b74e90b, type: 3}
       propertyPath: m_Name
       value: GameManager

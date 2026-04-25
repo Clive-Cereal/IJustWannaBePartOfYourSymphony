@@ -42,7 +42,7 @@ MonoBehaviour:
   Path: FmodProjects/GAD_FMod/Build/Desktop/Player.bank
   Name: Player
   StudioPath: bank:/Player
-  lastModified: 639126403841026104
+  lastModified: 639126428023797698
   FileSizes:
   - Name: Desktop
     Value: 70816
@@ -89,7 +89,7 @@ MonoBehaviour:
   Path: FmodProjects/GAD_FMod/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 639126403840990953
+  lastModified: 639126428023754800
   FileSizes:
   - Name: Desktop
     Value: 1114
@@ -109,7 +109,7 @@ MonoBehaviour:
   Path: FmodProjects/GAD_FMod/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 639126243006502533
+  lastModified: 639125872966925108
   FileSizes:
   - Name: Desktop
     Value: 1074
@@ -172,7 +172,7 @@ MonoBehaviour:
   StringsBanks:
   - {fileID: -2840161853446113110}
   cacheVersion: 131859
-  cacheTime: 639126403841031853
+  cacheTime: 639126428023799464
   SerializableEventsDict:
   - key: event:/SFX_Jump
     index: 0
@@ -228,7 +228,7 @@ MonoBehaviour:
   Path: FmodProjects/GAD_FMod/Build/Desktop/BGM.bank
   Name: BGM
   StudioPath: bank:/BGM
-  lastModified: 639126403840990953
+  lastModified: 639126428023744435
   FileSizes:
   - Name: Desktop
     Value: 12954080
@@ -302,7 +302,7 @@ MonoBehaviour:
   Path: FmodProjects/GAD_FMod/Build/Desktop/UI.bank
   Name: UI
   StudioPath: bank:/UI
-  lastModified: 639126403841031853
+  lastModified: 639126428023799464
   FileSizes:
   - Name: Desktop
     Value: 51744

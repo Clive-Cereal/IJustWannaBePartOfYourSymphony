@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6095428927817262375}
+  - component: {fileID: 2560560097658611729}
+  - component: {fileID: 8294713849554935794}
   m_Layer: 0
   m_Name: Rock_4
   m_TagString: Untagged
@@ -32,6 +34,39 @@ Transform:
   - {fileID: 8354574446145836381}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2560560097658611729
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 75903924722977951}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 0.5, z: 1}
+  m_Center: {x: 0, y: 0.25, z: 0}
+--- !u!114 &8294713849554935794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 75903924722977951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53b9dd2aa114a334c88f74d91ac1aa39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8354574446145703901
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -85,7 +120,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 12f0ed80d834e6246b96b9cf113fedc3, type: 3}
-      propertyPath: m_Materials.Array.data[0]
+      propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: c6010fd8a9033e94399bc3b59a4be473, type: 2}
     m_RemovedComponents: []
