@@ -87,11 +87,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roomPrefabs:
-  - {fileID: 4355397045128628626, guid: b0e61092c80962a44ab29bd8f58c7808, type: 3}
-  - {fileID: 8575538398994225820, guid: f5b60a167991ecd4fa96fac117868fce, type: 3}
-  - {fileID: 5133533382235352977, guid: e09f92bc6f489fc42a002256a0bc7615, type: 3}
-  - {fileID: 6482587463733113940, guid: 869f548e6e8a9d44a8797b105600979a, type: 3}
-  - {fileID: 2492352762437087303, guid: 560648085af2d8f44a917aaed451ae37, type: 3}
+  - {fileID: 4355397045128628626, guid: 9f60aceae32f2d44a8de65d5026ea228, type: 3}
+  - {fileID: 8575538398994225820, guid: 7bfad9d104ff6a84aaca924d7594fd2a, type: 3}
+  - {fileID: 5133533382235352977, guid: 6ab0e821c3432464a8fe5ac96c89c65b, type: 3}
+  - {fileID: 6482587463733113940, guid: 40aa1ab8d5ba44d49a483ce1ea4ba985, type: 3}
+  - {fileID: 2492352762437087303, guid: 515c24ec5e175c8409ace1a8e9d09f24, type: 3}
   startRoomPrefab: {fileID: 2271368885234911778, guid: f1dcfd4734ca7c24e8fe1647315b07e2, type: 3}
   lookAhead: 3
   spawnPoint: {x: 0, y: 0, z: 0}

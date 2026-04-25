@@ -185,11 +185,12 @@ private static int point = 0;
         point = Mathf.Max(0, point - 5);
         ObstacleHits++;
 
+        if (!hitSfx.IsNull)
+            FMODUnity.RuntimeManager.PlayOneShot(hitSfx, transform.position);
+
         if (ObstacleHits >= 10)
         {
             IsAlive = false;
-            if (!hitSfx.IsNull)
-                FMODUnity.RuntimeManager.PlayOneShot(hitSfx, transform.position);
             if (GameManager.Instance != null) GameManager.Instance.HandlePlayerDeath();
         }
     }
